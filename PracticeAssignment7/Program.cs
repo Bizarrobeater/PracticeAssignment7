@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PracticeAssignment7
 {
@@ -6,9 +7,11 @@ namespace PracticeAssignment7
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-        }
-    }
+            List<Card> newDeck = Solutions.initDeck();
+            Console.WriteLine(newDeck.Count);
 
-    
+          
+        }
+
+    }
 }
