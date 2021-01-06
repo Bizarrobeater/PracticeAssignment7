@@ -124,14 +124,148 @@ namespace PracticeAssignment7
             if (result != null)
                 return (int)result;
             else
-                throw new DivideByZeroException();               
+            {
+                Console.WriteLine(new DivideByZeroException().ToString());
+                throw new DivideByZeroException();
+            }           
         }
 
         // 7ø13
+        public struct expr
+        {
+            public expr(int constInt)
+            {
+                Const = constInt;
+            }
+
+            public int Const { get; }
+
+            public static int Add(expr x, expr y)
+            {
+                return x.Const + y.Const;
+            }
+
+            public static int Mul(expr x, expr y)
+            {
+                return x.Const * y.Const;
+            }
+
+            // For 7ø14
+            public static int Sub(expr x, expr y)
+            {
+                return x.Const - y.Const;
+            }
+
+            // For 7ø15
+            public static int Div(expr x, expr y)
+            {
+                return safeDivResult(x.Const, y.Const);
+            }
+        }
+
+        public static void testCase7o13()
+        {
+            int testExpr =
+                expr.Add(new expr(3), new expr(expr.Mul(new expr(2), new expr(4))));
+            Console.Write(testExpr);
+        }
+
+        // 7ø14
+        public static void testCase7o14()
+        {
+            int testExpr =
+                expr.Sub(new expr(3), new expr(2));
+            Console.Write(testExpr);
+        }
+
+        // 7ø15
+        public static void testCase7o15()
+        {
+            int testExpr =
+                expr.Add(new expr(3), new expr(expr.Div(new expr(6), new expr(2))));
+            Console.WriteLine(testExpr);
+            // Should thrown error
+            testExpr = expr.Add(new expr(3), new expr(expr.Div(new expr(6), new expr(0))));
+            Console.Write(testExpr);
+        }
+
+        // class for 7ø16 - 7ø18
+        public class tree<T>
+        {
+            public T Leaf { get; init; }
+
+            private tree<T> _leftTree = null;
+            private tree<T> _rightTree = null;
+
+            public tree<T> leftTree { get => _leftTree; set => _leftTree = value; }
+            public tree<T> rightTree { get => _rightTree; set => _rightTree = value; }
+
+            public tree(T data)
+            {
+                Leaf = data;
+            }
+
+        }
+
+        // 7ø16
+        public static int sum(tree<int> tree) 
+        {
+            if (tree == null)
+                return 0;
+
+            int result = tree.Leaf;
+
+            result += sum(tree.leftTree) + sum(tree.rightTree);
+            return result;
+        }
+
+        public static void testCase7o16()
+        {
+            tree<int> one = new tree<int>(1);
+            tree<int> two = new tree<int>(2);
+            tree<int> three = new tree<int>(3);
+            tree<int> four = new tree<int>(4);
+            tree<int> five = new tree<int>(5);
+
+            one.leftTree = two;
+            one.rightTree = three;
+            two.rightTree = four;
+            four.leftTree = five;
+            // expected 15, result 15
+            Console.WriteLine(sum(one));
+        }
+
+        // 7ø17
+        public static int leafs<T>(tree<T> tree)
+        {
+            if (tree == null)
+                return 0;
+
+            int result = 1;
+
+            result += leafs(tree.leftTree) + leafs(tree.rightTree);
+            return result;
+        }
+
+        public static void testCase7o17()
+        {
+            tree<int> one = new tree<int>(1);
+            tree<int> two = new tree<int>(2);
+            tree<int> three = new tree<int>(3);
+            tree<int> four = new tree<int>(4);
+            tree<int> five = new tree<int>(5);
+
+            one.leftTree = two;
+            one.rightTree = three;
+            two.rightTree = four;
+            four.leftTree = five;
+            // expected 5, result 5
+            Console.WriteLine(leafs(one));
+        }
 
 
 
-        
+
     }
 
 

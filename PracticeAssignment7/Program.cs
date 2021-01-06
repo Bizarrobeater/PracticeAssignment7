@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static PracticeAssignment7.Solutions;
 
 namespace PracticeAssignment7
 {
@@ -7,10 +8,7 @@ namespace PracticeAssignment7
     {
         static void Main(string[] args)
         {
-            List<Card> newDeck = Solutions.initDeck();
-            Console.WriteLine(newDeck.Count);
-
-          
+            testCase7o17();
         }
 
     }
