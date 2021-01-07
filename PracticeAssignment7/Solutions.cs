@@ -262,11 +262,5 @@ namespace PracticeAssignment7
             // expected 5, result 5
             Console.WriteLine(leafs(one));
         }
-
-
-
-
     }
-
-
 }

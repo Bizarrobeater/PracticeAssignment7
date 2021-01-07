@@ -40,5 +40,16 @@ namespace PracticeAssignment7
             this.suit = suit;
             this.rank = rank;
         }
+
+        public override string ToString()
+        {
+            string[] suitShort = new string[]{ "H", "D", "C", "S" };
+            string rankShort;
+            if ((uint)rank < 10)
+                rankShort = ((uint)rank).ToString();
+            else
+                rankShort = rank.ToString()[0].ToString();
+            return $"{suitShort[(uint)suit - 1]}{rankShort}";
+        }
     }
 }
